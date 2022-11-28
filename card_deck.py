@@ -97,11 +97,21 @@ class Deck:
                 for rank in Card.allowed_ranks:
                     self.cards.append(Card(rank, suit))
     
+    @classmethod
+    # Allows creation of a deck with syntax Deck.new(int)
+    def new(cls, num_of_decks=1):
+        return cls(num_of_decks)
+    
     def __str__(self) -> str:
+        # Print out all cards in deck, each on a new line
         cards = ""
         for card in self.cards:
             cards += f"{card}\n"
         return cards.rstrip("\n")
+
+    def __len__(self):
+        # Returns number of cards in the deck
+        return len(self.cards)
     
     def shuffle(self) -> None:
         random.shuffle(self.cards)
@@ -109,15 +119,11 @@ class Deck:
     def deal(self, req_cards=1) -> Card:
         return self.cards.pop()
 
-    def __len__(self):
-        # Returns number of cards in the deck
-        return len(self.cards)
-
-
+        
 def main():
-    my_card = Card("K", "♠")
-    my_other_card = Card("A", "♠")
-    print(my_other_card + 3)
+    my_deck = Deck.new(2)
+    print(my_deck)
+    
 
 
 if __name__ == "__main__":
