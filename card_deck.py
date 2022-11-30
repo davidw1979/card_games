@@ -88,6 +88,7 @@ class Deck:
     .shuffle() method randomly shuffles all cards in the deck
     .deal(optional int) deals single card or number of cards in passed parameter
     len(deck) returns number of cards in deck
+    Class method 'new' allows instantiation via Deck.new(int) parameter = number of decks
     """
 
     def __init__(self, num_of_decks=1) -> None:
@@ -119,12 +120,11 @@ class Deck:
     def deal(self, req_cards=1) -> Card:
         return self.cards.pop()
 
-        
+
 def main():
     my_deck = Deck.new(2)
     print(my_deck)
     
-
 
 if __name__ == "__main__":
     main()
