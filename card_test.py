@@ -1,4 +1,5 @@
 from card_deck import Card
+import pytest
 
 @pytest.fixture
 def ace_of_spades():
@@ -10,8 +11,9 @@ def four_of_diamonds():
     '''Returns 4♦ playing card'''
     return Card("4", "♦")
 
-def test_initial_rank(ace_of_spades):
+def test_initial_rank(ace_of_spades, four_of_diamonds):
     assert ace_of_spades.rank == "A"
+    assert four_of_diamonds.suit == "♦"
 
 def test_initial_suit(four_of_diamonds):
     assert four_of_diamonds.suit == "♦"

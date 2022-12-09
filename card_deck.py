@@ -11,12 +11,13 @@ class Card:
     """
 
     allowed_ranks = ("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
-    allowed_suits = ("♠", "♥", "♦", "♣")
+    allowed_suits = ("spade", "heart", "diamond", "club")
 
     def __init__(self, rank, suit) -> None:
         self.rank = rank
         self.suit = suit
         self.score = self.rank
+        self.img_file_name = suit
 
     def __str__(self) -> str:
         return f"{self.rank}{self.suit}"
@@ -38,13 +39,13 @@ class Card:
     @suit.setter
     def suit(self, suit):
         match suit:
-            case "♠" | "S" | "SPADE":
+            case "♠" | "s" | "spade":
                 self.__suit = "♠"
-            case "♥" | "H" | "HEART":
+            case "♥" | "h" | "heart":
                 self.__suit = "♥"
-            case "♦" | "D" | "DIAMOND":
+            case "♦" | "d" | "diamond":
                 self.__suit = "♦"
-            case "♣" | "C" | "CLUB":
+            case "♣" | "c" | "club":
                 self.__suit = "♣"
             case _:
                 raise ValueError("Card suit is not recognised")
@@ -64,6 +65,14 @@ class Card:
                 self.__score = 11
             case _:
                 self.__score = int(rank)
+    
+    @property
+    def img_file_name(self) -> str:
+        return self.__img_file_name
+    
+    @img_file_name.setter
+    def img_file_name(self, suit) -> None:
+        self.__img_file_name = f"{self.rank.lower()}_of_{suit}s.png"
     
     def __add__(self, other):
         # Uses a cards score to handle addition in form (Card + Card) or (Card + int)
@@ -122,8 +131,12 @@ class Deck:
 
 
 def main():
-    my_deck = Deck.new(2)
-    print(my_deck)
+    my_deck = Deck.new()
+    my_deck.shuffle()
+    my_card = my_deck.deal()
+    print(my_card)
+    print(len(my_deck))
+    print(my_card.img_file_name)
     
 
 if __name__ == "__main__":
