@@ -1,0 +1,41 @@
+#:kivy 2.1.0
+PlayerUI:
+
+<PlayerUI>:
+    orientation: "vertical"
+    padding: 50
+    spacing: 20
+
+    GridLayout:
+        cols: 5
+        padding: 50
+        spacing: 20
+
+        Image:
+            id: playerCardImage1
+            source: '<random_name>.jpg'
+            allow_stretch: True
+
+        Image:
+            id: playerCardImage2
+            source: '<random_name>.jpg'
+            allow_stretch: True
+    
+    RoundedButton:
+        text: root.deal_or_hit_btn_txt
+        pos_hint: {'center_x': 0.5}
+        size_hint: (.5, .3)
+        # background_color: (48/255, 84/255, 150/255)
+        # background_normal: ""
+        on_press: root.on_button_click()
+
+<RoundedButton@Button>
+    background_color: (0,0,0, 0)
+    background_normal: ""
+    canvas.before:
+        Color:
+            rgb: (168/255, 46/255, 85/255)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]

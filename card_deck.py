@@ -95,7 +95,7 @@ class Deck:
     Models a standard deck of 52 cards
     Takes optional parameter(int) at instantiation if multiple decks are required
     .shuffle() method randomly shuffles all cards in the deck
-    .deal(optional int) deals single card or number of cards in passed parameter
+    .deal() deals single card
     len(deck) returns number of cards in deck
     Class method 'new' allows instantiation via Deck.new(int) parameter = number of decks
     """
@@ -126,7 +126,7 @@ class Deck:
     def shuffle(self) -> None:
         random.shuffle(self.cards)
 
-    def deal(self, req_cards=1) -> Card:
+    def deal(self) -> Card:
         return self.cards.pop()
 
 
